@@ -1,0 +1,18 @@
+<form [formGroup]="movieSearchForm" (ngSubmit)="onSubmit()" class="ma-search">
+
+  <mat-form-field>
+    <mat-select placeholder="Plot" formControlName="movieType" id="movieType">
+      <mat-option *ngFor="let movie of movieTypes" [value]="movie.value">
+        {{ movie.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" placeholder="Search by Title" id="searchText" formControlName="searchText"/>
+    <mat-icon matSuffix="">search</mat-icon>
+  </mat-form-field>
+
+</form>
+<app-movie-details  [movieDetails]="movieDetails | async" [movieDetails]="movieType"></app-movie-details>

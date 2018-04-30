@@ -1,0 +1,79 @@
+ <div *ngIf="movieDetails && movieDetails.Title" class="ma-search-content">
+
+    <mat-card class="ma-search-content-poster">
+      <img mat-card-image src="{{movieDetails.Poster}}" alt="{{movieDetails.Title}}">
+      <mat-card-subtitle>Summary:</mat-card-subtitle>
+      <mat-card-content>
+        <p>
+          {{movieDetails.Plot}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="ma-search-content-details">
+      <mat-card-title>{{movieDetails.Title}}</mat-card-title>
+      <mat-card-subtitle>Ratings:</mat-card-subtitle>
+      <mat-list>
+        <mat-list-item *ngFor="let Rating of movieDetails.Ratings"> {{Rating.Source}} : {{Rating.Value}} </mat-list-item>
+      </mat-list>
+      <mat-divider></mat-divider>
+      <mat-list>
+        <mat-list-item>Year : {{movieDetails.Year}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Rated : {{movieDetails.Rated}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Released : {{movieDetails.Released}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Runtime : {{movieDetails.Runtime}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Genre :
+
+          <mat-chip-list>
+            <mat-chip color="primary" *ngFor="let Rating of movieDetails.Genre.split(',')">{{Rating}}</mat-chip>
+          </mat-chip-list>
+
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Director : {{movieDetails.Director}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Writer :
+
+          <mat-chip-list>
+            <mat-chip color="primary" *ngFor="let writer of movieDetails.Writer.split(',')">{{writer}}</mat-chip>
+          </mat-chip-list>
+
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Actors :
+
+          <mat-chip-list>
+            <mat-chip color="primary" *ngFor="let actor of movieDetails.Actors.split(',')">{{actor}}</mat-chip>
+          </mat-chip-list>
+
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Language :
+
+          <mat-chip-list>
+            <mat-chip color="primary" *ngFor="let lang of movieDetails.Language.split(',')">{{lang}}</mat-chip>
+          </mat-chip-list>
+
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Awards : {{movieDetails.Awards}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>imdbVotes : {{movieDetails.imdbVotes}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>imdbRating : {{movieDetails.imdbRating}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Type : {{movieDetails.Type}}</mat-list-item>
+      </mat-list>
+
+    </mat-card>
+
+  </div>
+ <div *ngIf="!movieDetails || !movieDetails.Title" class="ma-search-content">
+   <mat-card-title>Movie not in the database!!</mat-card-title>
+ </div>
+
+
