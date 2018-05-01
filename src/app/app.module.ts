@@ -14,20 +14,22 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 
-import { AppComponent } from './app.component';
-import { AppService } from './app.service';
+import { AppComponent } from './components/app.component';
+import { AppService } from './services/app.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
-import { DataService } from '../data';
-import { SearchMovieComponent } from './search-movie/search-movie.component';
-import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { DataService } from '../../server/data';
+import { SearchMovieComponent } from './components/search-movie/search-movie.component';
+import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { BannerComponent } from './components/banner/banner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchMovieComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'movieApp' }),

@@ -22,16 +22,16 @@
 
 }
 
-.ma-main > div {
+.ma-main > app-banner {
   width: 45%;
   margin: 10px;
   font-size: 30px;
 }
 
 .ma-logo{
-  background: url("../assets/sogeti_logo.png");
-  background-size: 14em 10em;
-  height: 10em;
+  background: url("../../assets/sogeti_logo.png");
+  background-size: 14em 13em;
+  height: 13em;
   width: 14em;
 }
 @media (max-width: 1024px) {
@@ -44,7 +44,7 @@
 
   }
   .ma-logo{
-    background: url("../assets/sogeti_logo.png");
+    background: url("../../assets/sogeti_logo.png");
     background-size: 10em 7em;
     height: 7em;
     width: 10em;
@@ -68,7 +68,7 @@
 
   }
   .ma-logo{
-    background: url("../assets/sogeti_logo.png");
+    background: url("../../assets/sogeti_logo.png");
     background-size: 10em 7em;
     height: 7em;
     width: 10em;

@@ -37,3 +37,9 @@
     width: 95%;
   }
 }
+
+.mat-chip {
+  font-size: 10px;
+  line-height: 10px;
+  margin-left: 10px;
+}

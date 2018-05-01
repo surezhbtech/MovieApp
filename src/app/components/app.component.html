@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+  <span>Movie App</span>
+  <!-- This fills the remaining space of the current row -->
+  <span class="ma-fill-space"></span>
+  <a href="https://www.sogeti.nl/" target="_blank" class="ma-logo"></a>
+</mat-toolbar>
+
+<mat-tab-group>
+
+  <mat-tab label="Home">
+    <ng-template mat-tab-label>
+      <mat-icon>home</mat-icon>
+    </ng-template>
+    <div class="ma-main">
+      <app-banner *ngFor="let app of appData" [bannerData]="app | async"></app-banner>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Search">
+    <ng-template mat-tab-label>
+      <mat-icon >search</mat-icon>
+    </ng-template>
+    <div>
+      <app-search-movie (searchEvent)="onSearch($event)"></app-search-movie>
+      <app-movie-details [movieDetails]="movieDetails"></app-movie-details>
+    </div>
+  </mat-tab>
+
+</mat-tab-group>

@@ -1,5 +1,5 @@
 /* tslint:disable */
-import { AppData } from './app/appInterface';
+import { AppData } from '../src/app/model/appInterface';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 

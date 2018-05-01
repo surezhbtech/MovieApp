@@ -1,20 +1,19 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, EventEmitter, Output, OnDestroy} from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 
-import { DataService } from '../../data';
-import { AppData } from '../appInterface';
-import { Observable } from 'rxjs/Observable';
-import { AppService } from '../app.service';
+import { AppData } from '../../model/appInterface';
+import { AppService } from '../../services/app.service';
 
 @Component({
   selector: 'app-search-movie',
   templateUrl: './search-movie.component.html',
   styleUrls: ['./search-movie.component.css']
 })
-export class SearchMovieComponent implements OnInit {
+export class SearchMovieComponent implements OnDestroy {
+  @Output() searchEvent = new EventEmitter<AppData>();
   movieTypes = [
     {value: 'full', viewValue: 'full'},
     {value: 'short', viewValue: 'short'}
@@ -22,31 +21,27 @@ export class SearchMovieComponent implements OnInit {
   movieSearchForm: FormGroup;
   movieType = new FormControl(this.movieTypes[1], [Validators.required]);
   searchText = new FormControl('', [Validators.required]);
-
-
-  movieDetails: Observable<AppData>;
+  subscription: any;
 
   constructor(private fb: FormBuilder, private appService: AppService) {
     this.movieSearchForm = this.fb.group({
       'movieType': this.movieTypes[0].value,
       'searchText': this.searchText
     });
-    this.movieDetails = this.movieSearchForm.valueChanges
+    this.subscription = this.movieSearchForm.valueChanges
       .debounceTime(400)
       .distinctUntilChanged()
       .filter(data => this.movieSearchForm.valid)
-      .switchMap(term => this.appService.searchByTilteAndPlot(term.searchText, term.movieType));
+      .switchMap(term => this.appService.searchByTilteAndPlot(term.searchText, term.movieType))
+      .subscribe(event => this.searchEvent.emit(event));
   }
-
-
-  ngOnInit() {
-
-  }
-
 
   onSubmit() {
     console.log('Form submitted!');
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
 }
